@@ -22,7 +22,6 @@ def parse_rss(feed_url):
         "feed_title":  d.feed.title,
         "feed_link":  d.feed.link,
         "feed_desc": d.feed.description,
-        "timestamp": datetime.now()
     }
     print('items length is %d' % (len(d['entries']),))
     rst = list()
