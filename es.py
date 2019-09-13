@@ -1,5 +1,7 @@
 import elasticsearch as es
+import datetime
 
-body = {"test":"test"}
-es = Elasticsearch(['localhost:9200'])
-es.index(index='indexName', doc_type='typeName', body, id=None)
+body = dict({"test":"test"} ,**{"timestamp": datetime.datetime.utcnow()})
+es = es.Elasticsearch(['sgk:9200'])
+rst = es.index(index='test', body=body, id=None)
+print(rst['result'])
