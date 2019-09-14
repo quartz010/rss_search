@@ -13,7 +13,7 @@ def _es_chk_exist(title):
 def es_index(bodys):
 
     bodys = list(filter(lambda x: not  _es_chk_exist(x['title']), bodys))
-    print(bodys)
+    print('add:' +str(len(bodys)))
     for body in bodys:
         body = dict(body ,**{"timestamp": datetime.datetime.utcnow()})
         rst = es.index(index='test', body=body, id=None)
