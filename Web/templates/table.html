@@ -16,29 +16,42 @@
   <script src="/static/js/jquery-equal-height.min.js"></script>
 
   <script src="/static/js/bootstrap.min.js"></script>
+
 </head>
 
+<style>
+.card {
+  margin: 5px
+}
+</style>
 
 <body class="responsive">
   <div class="container">
 
-    <h4 id="cards-with-equal-height-text-title">标题和文字高度相等的等高卡片布局</h4>
+    <h4 id="cards-with-equal-height-text-title">随机推荐</h4>
     <br>
-    <div class="row">
+    <div id="content" class="row">
       <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
         <div class="card">
-          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">
+                <label>描述:</label>
+                <text>112312</text>
+              <label>描述:</label>
+              <text>112312</text>
+            </br>
+            sadasd
+            </p>
+            <a href="#" class="btn btn-primary">Go</a>
           </div>
         </div>
       </div>
+      
       <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
         <div class="card">
-          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
           <div class="card-body">
             <h4 class="card-title">Card title</h4>
             <p class="card-text">Some quicknd make up the bulk of the card's content.
@@ -48,10 +61,41 @@
         </div>
       </div>
       <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+          <div class="card">
+            <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+            <div class="card-body">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quicknd make up the bulk of the card's content.
+                Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+            <div class="card">
+              <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+              <div class="card-body">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quicknd make up the bulk of the card's content.
+                  Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+              <div class="card">
+                <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+                <div class="card-body">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">Some quicknd make up the bulk of the card's content.
+                    Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
         <div class="card">
-          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
           <div class="card-body">
-            <h4 class="card-title">Card title Card title Card title Card title Card title Card title</h4>
+            <h4 class="card-title">rd title Card title Card title</h4>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
               content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -63,13 +107,44 @@
     <br>
   </div>
   <script type="text/javascript">
+
+  String.prototype.format= function(){
+      //将arguments转化为数组（ES5中并非严格的数组）
+      var args = Array.prototype.slice.call(arguments);
+      var count=0;
+      //通过正则替换%s
+      return this.replace(/%s/g,function(s,i){
+          return args[count++];
+      });
+  }
+    $(document).ready(function() {
+      itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body">\
+        <h4 class="card-title">%s</h4>\
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cardscontent.</p>\
+        <a href="%s" class="btn btn-primary">Go</a></div></div></div>'
+      function appendCard(Txt){
+        document.getElementById("content").innerHTML = 
+        document.getElementById("content").innerHTML + "<br /> " 
+        + Txt; 
+      }
+      appendCard(itemHTML.format('123','123'));
+      function repeat(n,Txt){ 
+          for(i=0; i<n;i++){ 
+            document.getElementById("content").innerHTML = 
+            document.getElementById("content").innerHTML + "<br /> " 
+            + Txt; 
+          } 
+      } 
+
+    })
+
     function equal_height() {
       // Equal Card Height
-      $('.jQueryEqualHeight1').jQueryEqualHeight();
-      // Equal Card Height and Text Height
-      $('.jQueryEqualHeight2').jQueryEqualHeight('.card .card-body .card-text');
-      $('.jQueryEqualHeight2').jQueryEqualHeight('.card');
-      // Equal Card Height, Text Height and Title Height
+      // $('.jQueryEqualHeight1').jQueryEqualHeight();
+      // // Equal Card Height and Text Height
+      // $('.jQueryEqualHeight2').jQueryEqualHeight('.card .card-body .card-text');
+      // $('.jQueryEqualHeight2').jQueryEqualHeight('.card');
+      // // Equal Card Height, Text Height and Title Height
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-title');
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-text');
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card');
