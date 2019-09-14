@@ -1,0 +1,232 @@
+{
+    "took": 4,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 10,
+            "relation": "eq"
+        },
+        "max_score": 0.6931472,
+        "hits": [
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "iZRzLm0B-6cjHQJuVoC9",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "\u7b80\u5355\u8f7b\u677e\uff1aLinux\u4e0b\u4ece\u96f6\u5f00\u59cb\u521b\u5efalvm\u865a\u62df\u78c1\u76d8\u9635\u5217+\u811a\u672c\u5316\u89e3\u51b3\u65b9\u6848",
+                    "link": "https://www.centos.bz/2019/07/%e7%ae%80%e5%8d%95%e8%bd%bb%e6%9d%be%ef%bc%9alinux%e4%b8%8b%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e5%88%9b%e5%bb%balvm%e8%99%9a%e6%8b%9f%e7%a3%81%e7%9b%98%e9%98%b5%e5%88%97%e8%84%9a%e6%9c%ac%e5%8c%96/",
+                    "author": "sa",
+                    "description": "\u524d\u8a00 \u903b\u8f91\u5377\u7ba1\u7406\u5668\uff08\u82f1\u8bed\uff1aLogical Volume Manager\uff0c\u7f29\u5199\u4e3aLVM\uff09\uff0c\u53c8\u8bd1\u4e3a\u903b\u8f91\u5377\u5b97\u7ba1\u7406\u5668\u3001\u903b\u8f91\u6247\u533a\u7ba1\u7406\u5668\u3001\u903b\u8f91\u78c1\u76d8\u7ba1\u7406\u5668\uff0c\u662fLinux\u6838\u5fc3\u6240\u63d0\u4f9b\u7684\u903b\u8f91\u5377\u7ba1\u7406\uff08Logical volume management\uff09\u529f\u80fd\u3002\u5b83\u5728\u786c\u76d8\u7684\u786c\u76d8\u5206\u533a\u4e4b\u4e0a\uff0c\u53c8\u521b\u5efa\u4e00\u4e2a\u903b\u8f91\u5c42\uff0c\u4ee5 [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "Linux",
+                        "LVM"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.381972"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "ipRzLm0B-6cjHQJuV4AB",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "002.LVM\u521b\u5efa",
+                    "link": "https://www.centos.bz/2019/07/002-lvm%e5%88%9b%e5%bb%ba/",
+                    "author": "sa",
+                    "description": "\u4e00. LVM\u521b\u5efa\u6b65\u9aa4 1.\u521b\u5efa\u5206\u533a 2.\u521b\u5efaPV 3.\u521b\u5efaVG 4.\u521b\u5efaLV 5.\u683c\u5f0f\u5316\u53ca\u6302\u8f7d \u4e8c. \u521b\u5efa\u5206\u533a \u4f7f\u7528\u5206\u533a\u5de5\u5177\uff08\u5982fdisk\u7b49\uff09\u521b\u5efaLVM\u5206\u533a\uff0c\u5374\u5c06\u5206\u533a\u6807\u8bc6\u4e3aLVM\u7684\u5206\u533a\u7c7b\u578b8e\u3002 [root@kauai ~]# fdisk -l \u2026\u2026 Device Boot St [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "LVM"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.661918"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "i5RzLm0B-6cjHQJuV4A1",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "001.LVM\u7b80\u4ecb",
+                    "link": "https://www.centos.bz/2019/07/001-lvm%e7%ae%80%e4%bb%8b/",
+                    "author": "sa",
+                    "description": "\u4e00. \u6982\u5ff5 LVM\u662f Logical Volume Manager(\u903b\u8f91\u5377\u7ba1\u7406)\u7684\u7b80\u5199\uff0c\u5b83\u7531Heinz Mauelshagen\u5728Linux 2.4\u5185\u6838\u4e0a\u5b9e\u73b0\u3002LVM\u5c06\u4e00\u4e2a\u6216\u591a\u4e2a\u786c\u76d8\u7684\u5206\u533a\u5728\u903b\u8f91\u4e0a\u96c6\u5408\uff0c\u76f8\u5f53\u4e8e\u4e00\u4e2a\u5927\u786c\u76d8\u6765\u4f7f\u7528\uff0c\u5f53\u786c\u76d8\u7684\u7a7a\u95f4\u4e0d\u591f\u4f7f\u7528\u7684\u65f6\u5019\uff0c\u53ef\u4ee5\u7ee7\u7eed\u5c06\u5176\u5b83\u7684\u786c\u76d8\u7684\u5206\u533a\u52a0 [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "LVM"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.701505"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "jJRzLm0B-6cjHQJuV4BU",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "centos7\u4e2dlvm\u5206\u533a\u7684\u521b\u5efa\u4e0e\u6269\u5c55",
+                    "link": "https://www.centos.bz/2019/07/centos7%e4%b8%adlvm%e5%88%86%e5%8c%ba%e7%9a%84%e5%88%9b%e5%bb%ba%e4%b8%8e%e6%89%a9%e5%b1%95/",
+                    "author": "sa",
+                    "description": "\u521b\u5efaLVM\u5206\u533a \u9996\u5148\uff0c\u6302\u8f7d\u865a\u62df\u786c\u76d8\u5230\u865a\u62df\u673a\u4e0a\uff0c\u8fd9\u91cc\u6302\u4e862\u4e2a1T\u7684\u786c\u76d8\u3002 $ lsblk NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT sda 8:0 0 100G 0 disk \u251c\u2500sda1 8:1 0 1G 0 part /boot \u2514\u2500sda [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "CentOS",
+                        "LVM"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.744770"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "jZRzLm0B-6cjHQJuV4CD",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "MySQL\u5b9e\u65f6\u5728\u7ebf\u5907\u4efd\u6062\u590d\u65b9\u6848\uff1aReplication+LVM Snapsho",
+                    "link": "https://www.centos.bz/2019/07/mysql%e5%ae%9e%e6%97%b6%e5%9c%a8%e7%ba%bf%e5%a4%87%e4%bb%bd%e6%81%a2%e5%a4%8d%e6%96%b9%e6%a1%88%ef%bc%9areplicationlvm-snapsho/",
+                    "author": "sa",
+                    "description": "\u5feb\u7167\u548c\u590d\u5236\u6280\u672f\u7684\u7ed3\u5408\u53ef\u4ee5\u4fdd\u8bc1\u6211\u4eec\u5f97\u5230\u4e00\u4e2a\u5b9e\u65f6\u7684\u5728\u7ebfMySQL\u5907\u4efd\u89e3\u51b3\u65b9\u6848 \u5f53\u4e3b\u5e93\u53d1\u751f\u8bef\u64cd\u4f5c\u65f6\uff0c\u53ea\u9700\u8981\u6062\u590d\u5907\u5e93\u4e0a\u7684\u5feb\u7167\uff0c\u7136\u540e\u518d\u6839\u636ebinlog\u6267\u884cpoint-in-time\u7684\u6062\u590d\u5373\u53ef \u4e0b\u9762\u5047\u5b9a\u4e00\u4e2a\u573a\u666f\uff1a \u4e3b\u4ece\u67b6\u6784\uff0c\u6ca1\u6709\u5ef6\u8fdf\uff0c\u67d0DBA\u8bef\u64cd\u4f5c\uff1adrop database \u63a5\u4e0b\u6765\u6211\u4eec\u6309\u7167 [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "LVM Snapsho",
+                        "mysql",
+                        "Replication"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.777620"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "jpRzLm0B-6cjHQJuV4C5",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "\u4e00\u7bc7\u6587\u7ae0\u5b66\u4f1aDocker\u547d\u4ee4",
+                    "link": "https://www.centos.bz/2019/07/%e4%b8%80%e7%af%87%e6%96%87%e7%ab%a0%e5%ad%a6%e4%bc%9adocker%e5%91%bd%e4%bb%a4/",
+                    "author": "sa",
+                    "description": "\u7b80\u4ecb Docker\u7684\u547d\u4ee4\u5206\u4e3a\u4f7f\u7528\u547d\u4ee4\u548c\u7ba1\u7406\u547d\u4ee4\uff0c\u800c\u672c\u6587\u5bf9Docker\u7684\u4f7f\u7528\u547d\u4ee4\u548c\u7ba1\u7406\u547d\u4ee4\u8fdb\u884c\u4e86\u6c47\u603b\u548c\u6837\u4f8b\u63d0\u793a\uff0c\u4ee5\u4fbf\u4e8e\u4ed6\u4eba\u5b66\u4e60\u548c\u672c\u4eba\u56de\u987e\u4f7f\u7528\u3002 Docker\u4e0d\u4ec5\u63d0\u4f9b\u4e86\u5728\u5404\u4e2a\u73af\u8282\u4e0b\u4f7f\u7528\u7684\u547d\u4ee4\uff0c\u8fd8\u63d0\u4f9b\u4e86DockerAPI\u4f9b\u6211\u4eec\u4f7f\u7528Http\u6765\u548cDocker\u8fdb\u884c\u4ea4\u4e92\uff0c\u4ece\u800c\u5f00\u53d1\u6211\u4eec\u81ea\u5df1\u7684Do [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "docker"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.836524"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "j5RzLm0B-6cjHQJuV4DX",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "\u907f\u5751\uff01\u7528 Docker \u641e\u5b9a PHP \u5f00\u53d1\u73af\u5883\u642d\u5efa\uff08Mac\u3001Docker\u3001Nginx\u3001PHP-FPM\u3001XDebug\u3001PHPStorm\u3001VSCode\uff09",
+                    "link": "https://www.centos.bz/2019/07/%e9%81%bf%e5%9d%91%ef%bc%81%e7%94%a8-docker-%e6%90%9e%e5%ae%9a-php-%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba%ef%bc%88mac%e3%80%81docker%e3%80%81nginx%e3%80%81php-fpm%e3%80%81xdebug/",
+                    "author": "sa",
+                    "description": "\u6587\u7ae0\u7248\u672c\uff1a2019.7 \u56e0\u4e3a\u6700\u8fd1\u6362\u7535\u8111\u7684\u7f18\u6545\u9700\u8981\u91cd\u65b0\u90e8\u7f72\u4e00\u4e0b\u672c\u5730\u7684\u5f00\u53d1\u73af\u5883\uff0c\u4e4b\u524d\u91c7\u7528\u7684\u865a\u62df\u673a\u65b9\u6848\uff0c\u5360\u7528\u78c1\u76d8\u7a7a\u95f4\u5b9e\u5728\u662f\u592a\u5927\uff0c\u5fc3\u75bc SSD \u90a3\u4e48\u70b9\u5730\u65b9\uff0c\u6240\u4ee5\u8fd9\u6b21\u91c7\u7528\u4e86 Docker \u7684\u65b9\u6848\u6765\u90e8\u7f72\u3002 \u5173\u4e8e\u8fd9\u6b21\u90e8\u7f72\u7684\u539f\u5219\uff0c\u6211\u7684\u60f3\u6cd5\u662f\u5c3d\u91cf\u4f7f\u7528\u5b98\u65b9\u7684\u955c\u50cf\u6765\u5b9e\u73b0\uff0c\u5c3d\u91cf\u4e0d\u6539\u52a8\u6216\u5c11\u6539\u52a8\u955c\u50cf\u3002\u56e0\u4e3a\u662f [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "docker",
+                        "Mac",
+                        "nginx",
+                        "PHP",
+                        "php-fpm",
+                        "PHPStorm",
+                        "VSCode",
+                        "XDebug"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.877864"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "kJRzLm0B-6cjHQJuV4D4",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "Java Spring Boot 2.0 \u5b9e\u6218\u4e4b\u5236\u4f5cDocker\u955c\u50cf\u5e76\u63a8\u9001\u5230Docker Hub\u548c\u963f\u91cc\u4e91\u4ed3\u5e93",
+                    "link": "https://www.centos.bz/2019/07/java-spring-boot-2-0-%e5%ae%9e%e6%88%98%e4%b9%8b%e5%88%b6%e4%bd%9cdocker%e9%95%9c%e5%83%8f%e5%b9%b6%e6%8e%a8%e9%80%81%e5%88%b0docker-hub%e5%92%8c%e9%98%bf%e9%87%8c%e4%ba%91%e4%bb%93%e5%ba%93/",
+                    "author": "sa",
+                    "description": "\u5185\u5bb9\u6458\u8981\uff1a\u5927\u89c4\u6a21\u96c6\u7fa4\u5feb\u901f\u90e8\u7f72Java\u5e94\u7528\uff0c\u9700\u8981\u5236\u4f5cDocker\u955c\u50cf\uff0c\u672c\u6b21\u8bfe\u7a0b\u8be6\u7ec6\u4ecb\u7ecd\u5982\u4f55\u5236\u4f5cJava\u7a0b\u5e8f\u7684Docker\u955c\u50cf\u6587\u4ef6\uff0c\u6df1\u5165\u89e3\u6790DockerFile\u6838\u5fc3\u53c2\u6570\uff0c\u4ee5\u53ca\u5b9e\u8df5\u6f14\u7ec3\u628a\u6211\u4eec\u5236\u4f5c\u7684Docker\u955c\u50cf\u63a8\u9001\u5230DockerHub\u4ed3\u5e93\uff0c\u56fd\u5185\u53ef\u4ee5\u4f7f\u7528\u963f\u91cc\u4e91Docker\u4ed3\u5e93\u52a0\u901f\uff0c\u4ee5\u53ca [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "docker",
+                        "Docker Hub",
+                        "Java Spring Boot"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.906742"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "kZRzLm0B-6cjHQJuWIAY",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "Docker\u6570\u636e\u7ba1\u7406",
+                    "link": "https://www.centos.bz/2019/07/docker%e6%95%b0%e6%8d%ae%e7%ae%a1%e7%90%86/",
+                    "author": "sa",
+                    "description": "\u5728docker\u5bb9\u5668\u4e2d\u7ba1\u7406\u6570\u636e\u4e3b\u8981\u6709\u4e24\u79cd\u65b9\u5f0f\uff1a \u6570\u636e\u5377\uff08Volumes\uff09 \u6302\u8f7d\u4e3b\u673a\u76ee\u5f55\uff08Bind mounts\uff09 \u6570\u636e\u5377 \u6570\u636e\u5377\u662f\u4e00\u4e2a\u53ef\u4f9b\u4e00\u4e2a\u6216\u591a\u4e2a\u5bb9\u5668\u4f7f\u7528\u7684\u7279\u6b8a\u76ee\u5f55\uff0c\u5b83\u7ed5\u8fc7UFS\uff0c\u53ef\u4ee5\u63d0\u4f9b\u5f88\u591a\u6709\u7528\u7684\u7279\u6027\uff1a \u6570\u636e\u5377\u53ef\u4ee5\u5728\u5bb9\u5668\u4e4b\u95f4\u5171\u4eab\u548c\u91cd\u7528\uff1b \u5bf9\u6570\u636e\u5377\u7684\u4fee\u6539\u4f1a\u7acb\u9a6c\u751f\u6548\uff1b \u5bf9\u6570\u636e\u5377\u7684\u66f4 [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "docker"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.939748"
+                }
+            },
+            {
+                "_index": "test",
+                "_type": "typeName",
+                "_id": "kpRzLm0B-6cjHQJuWIA6",
+                "_score": 0.6931472,
+                "_source": {
+                    "title": "Docker\u5165\u95e8\u57fa\u7840\u4e4b\u955c\u50cf\u4f7f\u7528",
+                    "link": "https://www.centos.bz/2019/07/docker%e5%85%a5%e9%97%a8%e5%9f%ba%e7%a1%80%e4%b9%8b%e9%95%9c%e5%83%8f%e4%bd%bf%e7%94%a8-2/",
+                    "author": "sa",
+                    "description": "\u5f53\u8fd0\u884c\u5bb9\u5668\u65f6\uff0c\u4f7f\u7528\u7684\u955c\u50cf\u5982\u679c\u5728\u672c\u5730\u4e2d\u4e0d\u5b58\u5728\uff0cdocker \u5c31\u4f1a\u81ea\u52a8\u4ece docker \u955c\u50cf\u4ed3\u5e93\u4e2d\u4e0b\u8f7d\uff0c\u9ed8\u8ba4\u662f\u4ece Docker Hub \u516c\u5171\u955c\u50cf\u6e90\u4e0b\u8f7d\u3002 \u4e0b\u9762\u6211\u4eec\u6765\u5b66\u4e60\uff1a 1.\u7ba1\u7406\u548c\u4f7f\u7528\u672c\u5730 Docker \u4e3b\u673a\u955c\u50cf 2.\u521b\u5efa\u955c\u50cf \u5217\u51fa\u955c\u50cf\u5217\u8868 \u6211\u4eec\u53ef\u4ee5\u4f7f\u7528 docker images [&#8230;]",
+                    "tags": [
+                        "\u672a\u5206\u7c7b",
+                        "docker"
+                    ],
+                    "feed_title": "Linux\u8fd0\u7ef4\u65e5\u5fd7",
+                    "feed_link": "https://www.centos.bz",
+                    "feed_desc": "\u5173\u4e8eCentOS\u548cUbuntu\u7b49\u7cfb\u7edf\u7684\u8fd0\u7ef4",
+                    "timestamp": "2019-09-14T06:26:13.973917"
+                }
+            }
+        ]
+    }
+}
