@@ -44,8 +44,7 @@ def es_rand():
     res_list = list()
     for hit in res['hits']['hits']:
         try:
-            #print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
-            print(dict(hit["_source"], **{"_score" :hit["_score"]}))
+            #print(dict(hit["_source"], **{"_score" :hit["_score"]}))
             res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
         except KeyError as e:
             print(repr(e))

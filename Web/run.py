@@ -25,5 +25,22 @@ def index():
 def table():
     return render_template('table.html')
 
+@app.route('/api')
+def get_es():
+    import json
+    def es_rand():
+        import elasticsearch
+        es = elasticsearch.Elasticsearch(['sgk:9200'])
+        res = es.search(index='test', body={"from": 0,"size": 1,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
+        res_list = list()
+        for hit in res['hits']['hits']:
+            try:
+                #print(dict(hit["_source"], **{"_score" :hit["_score"]}))
+                res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
+            except KeyError as e:
+                print(repr(e))
+        return res_list
+    res_list = es_rand()
+    return json.dumps(res_list)
 if __name__ == '__main__':
     app.run(debug=True)
