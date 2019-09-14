@@ -35,31 +35,19 @@
         <div class="card">
           <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">测试卡片</h4>
             <p class="card-text">
               <label>描述:</label>
-              <text>112312</text>
+              <text>你知道的</text>
               </br>
               <label>描述:</label>
-              <text>112312</text>
-              sadasd
+              <text>未知</text>
             </p>
             <a href="#" class="btn btn-primary">Go</a>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
-        <div class="card">
-          <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Some quicknd make up the bulk of the card's content.
-              Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <!-- .row -->
@@ -89,17 +77,16 @@
 
     itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body">\
         <h4 class="card-title">%s</h4>\
-        <p class="card-text"></p>\
+        <p class="card-text">\
         <label>作者:</label><text>%s</text></br>\
         <label>描述:</label><text>%s</text></br>\
         <label>日期:</label><text>%s</text></br>\
-        <a href="%s" class="btn btn-primary">Go</a></div></div></div>'
+        </p><a href="%s" class="btn btn-primary">Go</a></div></div></div>'
     function appendCard(Txt) {
       document.getElementById("content").innerHTML =
         document.getElementById("content").innerHTML + "<br/> "
         + Txt;
     }
-    appendCard(itemHTML.format('123', '123'));
     function repeat(n, Txt) {
       for (i = 0; i < n; i++) {
         document.getElementById("content").innerHTML =
@@ -124,9 +111,10 @@
           req.map(x => appendCard(itemHTML.format(x.title, x.author, x.description, x.timestamp, x.link)))
           //x = req[0]
           //appendCard(itemHTML.format(x.title, x.author, x.description))
-          appendCard(itemHTML.format('123', '123'));
         },
         complete: function () {
+          appendCard(itemHTML.format('test', 'test'));
+          equal_height()
           //请求完成的处理
         },
         error: function () {
