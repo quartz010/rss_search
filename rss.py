@@ -7,7 +7,7 @@ def parse_rss(feed_url):
     import ssl
 
     ssl._create_default_https_context = ssl._create_unverified_context
-    d = feedparser.parse('https://blog.12ms.xyz/feed/')
+    d = feedparser.parse(feed_url)
     # d = feedparser.parse('https://rsshub.app/dysfz')
 
 
@@ -48,4 +48,3 @@ def parse_rss(feed_url):
     #     print('item\'s updated time = ',item.updated_parsed)
 
 
-print(parse_rss("sa"))
