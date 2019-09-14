@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Bootstrap CSS -->
+
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+  
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/js/jquery-equal-height.min.js"></script>
+
+  <script src="/static/js/bootstrap.min.js"></script>
+</head>
+
+
+<body class="responsive">
+  <div class="container">
+
+    <h4 id="cards-with-equal-height-text-title">标题和文字高度相等的等高卡片布局</h4>
+    <br>
+    <div class="row">
+      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+        <div class="card">
+          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+        <div class="card">
+          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Some quicknd make up the bulk of the card's content.
+              Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+        <div class="card">
+          <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Card title Card title Card title Card title Card title Card title</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .row -->
+    <br>
+  </div>
+  <script type="text/javascript">
+    function equal_height() {
+      // Equal Card Height
+      $('.jQueryEqualHeight1').jQueryEqualHeight();
+      // Equal Card Height and Text Height
+      $('.jQueryEqualHeight2').jQueryEqualHeight('.card .card-body .card-text');
+      $('.jQueryEqualHeight2').jQueryEqualHeight('.card');
+      // Equal Card Height, Text Height and Title Height
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-title');
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-text');
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card');
+    }
+    $(window).on('load', function (event) {
+      equal_height();
+    });
+    $(window).resize(function (event) {
+      equal_height();
+    });
+  </script>
+  <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+
+  </div>
+
+</body>
+
+</html>
