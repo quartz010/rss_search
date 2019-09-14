@@ -29,9 +29,11 @@ def table():
 def get_es():
     import json
     def es_rand():
+        HOSTP = "sgk:9200"
+        POST_COUNT = 10
         import elasticsearch
         es = elasticsearch.Elasticsearch(['sgk:9200'])
-        res = es.search(index='test', body={"from": 0,"size": 1,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
+        res = es.search(index='test', body={"from": 0,"size": POST_COUNT,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
         res_list = list()
         for hit in res['hits']['hits']:
             try:
