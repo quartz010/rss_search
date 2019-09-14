@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/font-awesome.min.css">
-  
+
   <script src="/static/js/jquery-3.4.1.min.js"></script>
   <script src="/static/js/jquery-equal-height.min.js"></script>
 
@@ -20,9 +20,9 @@
 </head>
 
 <style>
-.card {
-  margin: 5px
-}
+  .card {
+    margin: 5px
+  }
 </style>
 
 <body class="responsive">
@@ -35,20 +35,20 @@
         <div class="card">
           <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
           <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">
-                <label>描述:</label>
-                <text>112312</text>
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">
               <label>描述:</label>
               <text>112312</text>
-            </br>
-            sadasd
+              </br>
+              <label>描述:</label>
+              <text>112312</text>
+              sadasd
             </p>
             <a href="#" class="btn btn-primary">Go</a>
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
         <div class="card">
           <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
@@ -60,84 +60,79 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
-          <div class="card">
-            <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
-            <div class="card-body">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Some quicknd make up the bulk of the card's content.
-                Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
-            <div class="card">
-              <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
-              <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quicknd make up the bulk of the card's content.
-                  Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
-              <div class="card">
-                <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
-                <div class="card-body">
-                  <h4 class="card-title">Card title</h4>
-                  <p class="card-text">Some quicknd make up the bulk of the card's content.
-                    Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-      <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
-        <div class="card">
-          <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
-          <div class="card-body">
-            <h4 class="card-title">rd title Card title Card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
     </div>
-    <!-- .row -->
-    <br>
+  </div>
+  <!-- .row -->
+  <br>
   </div>
   <script type="text/javascript">
 
-  String.prototype.format= function(){
-      //将arguments转化为数组（ES5中并非严格的数组）
-      var args = Array.prototype.slice.call(arguments);
-      var count=0;
-      //通过正则替换%s
-      return this.replace(/%s/g,function(s,i){
-          return args[count++];
-      });
-  }
-    $(document).ready(function() {
-      itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body">\
-        <h4 class="card-title">%s</h4>\
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cardscontent.</p>\
-        <a href="%s" class="btn btn-primary">Go</a></div></div></div>'
-      function appendCard(Txt){
-        document.getElementById("content").innerHTML = 
-        document.getElementById("content").innerHTML + "<br /> " 
-        + Txt; 
-      }
-      appendCard(itemHTML.format('123','123'));
-      function repeat(n,Txt){ 
-          for(i=0; i<n;i++){ 
-            document.getElementById("content").innerHTML = 
-            document.getElementById("content").innerHTML + "<br /> " 
-            + Txt; 
-          } 
-      } 
+    String.prototype.format = function () {
+      //将arguments转化为数组（ES5中并非严格的数组）
+      var args = Array.prototype.slice.call(arguments);
+      var count = 0;
+      //通过正则替换%s
+      return this.replace(/%s/g, function (s, i) {
+        return args[count++];
+      });
+    }
+    $(document).ready(function () {
+      $(window).on('load', function (event) {
+        equal_height();
+      });
+      $(window).resize(function (event) {
+        equal_height();
+      });
+      init_cards()
 
     })
 
+    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body">\
+        <h4 class="card-title">%s</h4>\
+        <p class="card-text"></p>\
+        <label>作者:</label><text>%s</text></br>\
+        <label>描述:</label><text>%s</text></br>\
+        <label>日期:</label><text>%s</text></br>\
+        <a href="%s" class="btn btn-primary">Go</a></div></div></div>'
+    function appendCard(Txt) {
+      document.getElementById("content").innerHTML =
+        document.getElementById("content").innerHTML + "<br/> "
+        + Txt;
+    }
+    appendCard(itemHTML.format('123', '123'));
+    function repeat(n, Txt) {
+      for (i = 0; i < n; i++) {
+        document.getElementById("content").innerHTML =
+          document.getElementById("content").innerHTML + "<br /> "
+          + Txt;
+      }
+    }
+    function init_cards() {
+      $.ajax({
+        url: "/static/res.json", //请求的url地址
+        dataType: "json", //返回格式为json
+        async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+        data: { "id": "value" }, //参数值
+        type: "GET", //请求方式
+        beforeSend: function () {
+          //请求前的处理
+        },
+        success: function (req) {
+          //请求成功时处理
+          console.log(req);
+          req.map(x => appendCard(itemHTML.format(x.title, x.author, x.description, x.timestamp, x.link)))
+          //x = req[0]
+          //appendCard(itemHTML.format(x.title, x.author, x.description))
+          appendCard(itemHTML.format('123', '123'));
+        },
+        complete: function () {
+          //请求完成的处理
+        },
+        error: function () {
+          //请求出错处理
+        }
+      });
+    }
     function equal_height() {
       // Equal Card Height
       // $('.jQueryEqualHeight1').jQueryEqualHeight();
@@ -149,12 +144,6 @@
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-text');
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card');
     }
-    $(window).on('load', function (event) {
-      equal_height();
-    });
-    $(window).resize(function (event) {
-      equal_height();
-    });
   </script>
   <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
     <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
