@@ -90,21 +90,43 @@
       </div>
     </div>
 
+
+
     <div class="container" >
+        <div class="card-group" id="accordion">
+            <div class="card card-default">
+              <div class="card-heading">
+                <h4 class="card-title">
+                  <a data-toggle="collapse" data-parent="#accordion" 
+                     href="#collapseOne">
+                    点击我进行展开，再次点击我进行折叠。第 1 部分
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="card-collapse collapse in">
+                <div class="card-body">
+                  Nihil anim keffiyeh helvetica, craft beer labore wes anderson 
+                  cred nesciunt sapiente ea proident. Ad vegan excepteur butcher 
+                  vice lomo.
+                </div>
+              </div>
+            </div>
+        </div>
+      <h3 id="cards-with-equal-height-text-title">随机推荐</h3>
+
       <!-- Example row of columns -->
       <div class="row" id="content">
-        <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+        <style>
+              .card {margin-top: 5px;margin-bottom: 5px}
+        </style>
 
-            <style>
-                .card {
-                  margin-top: 5px;
-                  margin-bottom: 5px
-                }
-          </style>
+        <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
           <div class="card">
             <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+            <h4 class="card-header">测试卡片</h4>
+
             <div class="card-body">
-              <h4 class="card-title">测试卡片</h4>
+              <h4 class="card-title">4 test cases</h4>
               <p class="card-text">
                 <label>描述:</label>
                 <text>你知道的</text>
@@ -116,9 +138,8 @@
             </div>
           </div>
         </div>
+
       </div>
-
-
     </div> <!-- /container -->
     <hr>
 
@@ -159,8 +180,8 @@
 
     })
 
-    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body" style="background:%s">\
-        <h4 class="card-title">%s</h4>\
+    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"  style="background:%s"><h4 class="card-header">%s</h4>\
+        <div class="card-body" >\
         <p class="card-text">\
         <label>作者:</label><text>%s</text></br>\
         <label>描述:</label><text>%s</text></br>\
@@ -192,7 +213,7 @@
         success: function (req) {
           //请求成功时处理
           console.log(req);
-          req.map(x => appendCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
+          req.map(x => appendCard(itemHTML.format( rand_color(),x.title, x.author, x.description, x.timestamp, x.link)))
           //x = req[0]
           //appendCard(itemHTML.format(x.title, x.author, x.description))
         },
