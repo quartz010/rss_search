@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import abort
+from flask import current_app
 
 
 def create_app():
@@ -32,6 +33,7 @@ def get_es():
     import json
     def es_rand():
         HOSTP = "sgk:9200"
+        
         POST_COUNT = 10
         import elasticsearch
         es = elasticsearch.Elasticsearch([HOSTP])
@@ -47,10 +49,14 @@ def get_es():
     res_list = es_rand()
     return json.dumps(res_list)
 
-@app.route('/api2')
+@app.route('/api2',  methods=['POST', 'GET'])
 def search_es():
     import json
     def es_search(kword):
+        HOSTP = "sgk:9200"
+
+        import elasticsearch
+        es = elasticsearch.Elasticsearch([HOSTP])
         import json
         #res = es.search(index="test", body={"query": {"match_all": {}}})
         #res = es.search(index="test", q="author : *")
@@ -68,11 +74,11 @@ def search_es():
         return res_list
         #rst = es.get(index="test", id=1)
         #print(rst)
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
-            res_list = es_search(request.form['q'])
+            res_list = es_search(request.args.get('q', ''))
         except Exception as e:
-            print(repr(e))
+            current_app.logger.info(repr(e))
             abort(500)
 
     return json.dumps(res_list)
