@@ -48,8 +48,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="">Home <span
-              class="sr-only">(current)</span></a>
+          <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Link</a>
@@ -58,8 +57,8 @@
           <a class="nav-link disabled" href="">Disabled</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href=""
-            id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Dropdown</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="">Action</a>
             <a class="dropdown-item" href="">Another action</a>
@@ -92,32 +91,59 @@
 
 
 
-    <div class="container" >
-        <div class="card-group" id="accordion">
-            <div class="card card-default">
-              <div class="card-heading">
-                <h4 class="card-title">
-                  <a data-toggle="collapse" data-parent="#accordion" 
-                     href="#collapseOne">
-                    点击我进行展开，再次点击我进行折叠。第 1 部分
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="card-collapse collapse in">
-                <div class="card-body">
-                  Nihil anim keffiyeh helvetica, craft beer labore wes anderson 
-                  cred nesciunt sapiente ea proident. Ad vegan excepteur butcher 
-                  vice lomo.
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="search_submit" placeholder="请输入RSS源">
+                  </div>
+                  <button type="button" id="search_btn" class="btn btn-primary btn-default">Search it >> </button>
+                </form>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row" id='search-content'>
+
+                <div class="col-md-4 col-sm-6">
+
+                  <div class="card">
+                    <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+                    <h4 class="card-header">测试卡片</h4>
+                    <div class="card-body">
+                      <h4 class="card-title">4 test cases</h4>
+                      <p class="card-text">
+                        <label>描述:</label>
+                        <text>你知道的</text>
+                        </br>
+                        <label>描述:</label>
+                        <text>未知</text>
+                      </p>
+                      <a href="#" class="btn btn-secondary">Go</a>
+                    </div>
+                  </div>
                 </div>
               </div>
+
             </div>
+          </div>
         </div>
+      </div>
       <h3 id="cards-with-equal-height-text-title">随机推荐</h3>
 
       <!-- Example row of columns -->
       <div class="row" id="content">
         <style>
-              .card {margin-top: 5px;margin-bottom: 5px}
+          .card {
+            margin-top: 5px;
+            margin-bottom: 5px
+          }
         </style>
 
         <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
@@ -176,11 +202,14 @@
       $(window).resize(function (event) {
         equal_height();
       });
-      init_cards()
+      init_cards();
+      $("#search_btn").on("click", function(){
+        content_search('@124y');
+      })
 
     })
 
-    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"  style="background:%s"><h4 class="card-header">%s</h4>\
+    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"  style="background:%s"><h5 class="card-header">%s</h5>\
         <div class="card-body" >\
         <p class="card-text">\
         <label>作者:</label><text>%s</text></br>\
@@ -192,12 +221,44 @@
         document.getElementById("content").innerHTML + "<br/> "
         + Txt;
     }
+    function appendSearchCard(Txt) {
+      document.getElementById("content").innerHTML =
+        document.getElementById("content").innerHTML + "<br/> "
+        + Txt;
+    }
     function repeat(n, Txt) {
       for (i = 0; i < n; i++) {
         document.getElementById("content").innerHTML =
           document.getElementById("content").innerHTML + "<br /> "
           + Txt;
       }
+    }
+    function content_search(search_text) {
+      $.ajax({
+        //url: "/static/res.json", //请求的url地址
+        url: "/api2", //请求的url地址
+        dataType: "json", //返回格式为json
+        async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+        data: { "q": search_text }, //参数值
+        type: "GET", //请求方式
+        beforeSend: function () {
+          //请求前的处理
+        },
+        success: function (req) {
+          //请求成功时处理
+          console.log(req);
+          req.map(x => appendSearchCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
+        },
+        complete: function () {
+          appendSearchCard(itemHTML.format(rand_color(), 'test', 'test'));
+          // equal_height()
+          //请求完成的处理
+        },
+        error: function () {
+          //请求出错处理
+        }
+      });
+
     }
     function init_cards() {
       $.ajax({
@@ -213,12 +274,12 @@
         success: function (req) {
           //请求成功时处理
           console.log(req);
-          req.map(x => appendCard(itemHTML.format( rand_color(),x.title, x.author, x.description, x.timestamp, x.link)))
+          req.map(x => appendCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
           //x = req[0]
           //appendCard(itemHTML.format(x.title, x.author, x.description))
         },
         complete: function () {
-          appendCard(itemHTML.format(rand_color(),'test', 'test'));
+          appendCard(itemHTML.format(rand_color(), 'test', 'test'));
           equal_height()
           //请求完成的处理
         },
