@@ -44,11 +44,19 @@ def parse_rss(feed_url):
             "feed_desc":  d.feed.description,
         }
     except (KeyError,AttributeError) as e:
-        print(re.compile("'(.*)'").findall(repr(e)))
+        print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  }'
-        code_str = rm_not_exist(code_str, err_item)
-        feed_info = eval(code_str)
+
+        for _ in range(len(code_str.split('  '))):
+            try:
+                code_str = rm_not_exist(code_str, err_item)
+                feed_info = eval(code_str)                
+            except AttributeError as e:
+                    err_item = re.compile("'(.*)'").findall(repr(e))
+                    continue
+            break
+
         pass
     print('items length is %d' % (len(d['entries']),))
     rst = list()
@@ -59,17 +67,20 @@ def parse_rss(feed_url):
 
         rst = list(map( lambda x: dict({'title': x.title, 'link': x.link, 'author': x.author, 'description': x.description, 'tags': list(map(lambda y: y['term'] ,x.tags))}, **feed_info), d.entries))
     except (KeyError,AttributeError) as e:
-        print(re.compile("'(.*)'").findall(repr(e)))
+        print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
+
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         code_str = "{'title':x.title,  'link':x.link,  'author':x.author,  'description':x.description,  'tags':list(map(lambda y:y['term'],x.tags))  }"
 
-        code_str = rm_not_exist(code_str, err_item)
-        rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
-#        print(eval(code_str))
-        try:
-            rst = list(map( lambda x: dict({'title': x.title, 'link': x.link,'author':x.author, 'description': x.description}, **feed_info), d.entries))
-        except (KeyError,AttributeError) as e:
-            print(repr(e))
+        for _ in range(len(code_str.split('  '))):
+            try:
+                code_str = rm_not_exist(code_str, err_item)
+                rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
+            except AttributeError as e:
+                    err_item = re.compile("'(.*)'").findall(repr(e))
+                    continue
+            break
+
         print(rst)
 
     return rst
