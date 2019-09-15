@@ -7,6 +7,10 @@ def parse_rss(feed_url):
     import ssl
     import re
     def rm_not_exist(code_str, err_item):
+        """
+            用于自动的尝试哪些字段需要解析，
+            比较Hack的方法
+        """
         from functools import reduce
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         #err_end = code_str.find(err_item)
@@ -17,6 +21,8 @@ def parse_rss(feed_url):
         items = list(filter(lambda x: err_item not in x, items))
         #print(items)
         return reduce(lambda x, y: x+y, items)
+    
+    # 这里需要设置ssl
     ssl._create_default_https_context = ssl._create_unverified_context
     d = feedparser.parse(feed_url)
     # d = feedparser.parse('https://rsshub.app/dysfz')
@@ -56,10 +62,7 @@ def parse_rss(feed_url):
         print(re.compile("'(.*)'").findall(repr(e)))
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         code_str = "{'title':x.title,  'link':x.link,  'author':x.author,  'description':x.description,  'tags':list(map(lambda y:y['term'],x.tags))  }"
-        #err_pos = code_str.find(err_item)
-        #err_end = code_str.find("  ", err_pos)
-        #print(err_item, err_pos, err_end)
-        #code_str = code_str[:err_pos-1]+code_str[err_end+1:]
+
         code_str = rm_not_exist(code_str, err_item)
         rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
 #        print(eval(code_str))
