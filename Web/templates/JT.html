@@ -100,7 +100,7 @@
                 aria-expanded="true" aria-controls="collapseOne">
                 <form class="form-inline" role="form">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="search_submit" placeholder="请输入RSS源">
+                    <input type="text" class="form-control" id="search_text" placeholder="请输入搜索内容">
                   </div>
                   <button type="button" id="search_btn" class="btn btn-primary btn-default">Search it >> </button>
                 </form>
@@ -109,7 +109,7 @@
           </div>
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-              <div class="row" id='search-content'>
+              <div class="row" id='search_content'>
 
                 <div class="col-md-4 col-sm-6">
 
@@ -204,7 +204,8 @@
       });
       init_cards();
       $("#search_btn").on("click", function(){
-        content_search('@124y');
+
+        content_search($('#search_text').val());
       })
 
     })
@@ -222,8 +223,8 @@
         + Txt;
     }
     function appendSearchCard(Txt) {
-      document.getElementById("content").innerHTML =
-        document.getElementById("content").innerHTML + "<br/> "
+      document.getElementById("search_content").innerHTML =
+        document.getElementById("search_content").innerHTML + "<br/> "
         + Txt;
     }
     function repeat(n, Txt) {
