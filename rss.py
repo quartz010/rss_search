@@ -1,5 +1,5 @@
 
-
+# -*- coding: UTF-8
 def parse_rss(feed_url):
     import datetime
     import json
