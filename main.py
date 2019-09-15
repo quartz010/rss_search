@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 import rss
 import elastic 
 import json

@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import render_template
+from flask import request
+from flask import abort
 
 
 def create_app():
@@ -66,8 +68,13 @@ def search_es():
         return res_list
         #rst = es.get(index="test", id=1)
         #print(rst)
+    if request.method == 'POST':
+        try:
+            res_list = es_search(request.form['q'])
+        except Exception as e:
+            print(repr(e))
+            abort(500)
 
-    res_list = es_search()
     return json.dumps(res_list)
     
 
