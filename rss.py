@@ -51,10 +51,10 @@ def parse_rss(feed_url):
 
         for _ in range(len(code_str.split('  '))):
             try:
-                code_str = rm_not_exist(code_str, err_item)[0]
+                code_str = rm_not_exist(code_str, err_item)
                 feed_info = eval(code_str)                
             except AttributeError as e:
-                    err_item = re.compile("'(.*)'").findall(repr(e))
+                    err_item = re.compile("'(.*)'").findall(repr(e))[0]
                     continue
             break
 
@@ -78,7 +78,7 @@ def parse_rss(feed_url):
                 code_str = rm_not_exist(code_str, err_item)
                 if err_item == "author": 
                     feed_info['author'] = "unknown"
-                    
+
                 rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
                     
             except AttributeError as e:
