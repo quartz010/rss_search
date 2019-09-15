@@ -20,7 +20,8 @@ def parse_rss(feed_url):
         items = code_str.split('  ')
         items = list(filter(lambda x: err_item not in x, items))
         #print(items)
-        return reduce(lambda x, y: x+y, items)
+        # 这里需要使用双空格，加至原形态
+        return reduce(lambda x, y: x+'  '+y, items)
     
     # 这里需要设置ssl
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -50,7 +51,7 @@ def parse_rss(feed_url):
 
         for _ in range(len(code_str.split('  '))):
             try:
-                code_str = rm_not_exist(code_str, err_item)
+                code_str = rm_not_exist(code_str, err_item)[0]
                 feed_info = eval(code_str)                
             except AttributeError as e:
                     err_item = re.compile("'(.*)'").findall(repr(e))
