@@ -159,7 +159,7 @@
 
     })
 
-    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body">\
+    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"><div class="card-body" style="background:%s">\
         <h4 class="card-title">%s</h4>\
         <p class="card-text">\
         <label>作者:</label><text>%s</text></br>\
@@ -192,12 +192,12 @@
         success: function (req) {
           //请求成功时处理
           console.log(req);
-          req.map(x => appendCard(itemHTML.format(x.title, x.author, x.description, x.timestamp, x.link)))
+          req.map(x => appendCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
           //x = req[0]
           //appendCard(itemHTML.format(x.title, x.author, x.description))
         },
         complete: function () {
-          appendCard(itemHTML.format('test', 'test'));
+          appendCard(itemHTML.format(rand_color(),'test', 'test'));
           equal_height()
           //请求完成的处理
         },
@@ -205,6 +205,11 @@
           //请求出错处理
         }
       });
+    }
+    function rand_color() {
+      colors = ['#f3a683', '#f7d794', '#778beb', '#e77f67', '#cf6a87', '#cf6a87', '#f5cd79', '#63cdda', '#e66767', '#303952']
+      cnum = Math.floor(Math.random() * 100 % 10)
+      return colors[cnum]
     }
     function equal_height() {
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-title');
