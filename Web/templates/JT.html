@@ -96,15 +96,16 @@
         <div class="card">
           <div class="card-header" id="headingOne">
             <h2 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
+              <!-- <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne"> -->
+              </button>
+
                 <form class="form-inline" role="form">
                   <div class="form-group">
                     <input type="text" class="form-control" id="search_text" placeholder="请输入搜索内容">
                   </div>
                   <button type="button" id="search_btn" class="btn btn-primary btn-default">Search it >> </button>
                 </form>
-              </button>
             </h2>
           </div>
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -204,7 +205,9 @@
       });
       init_cards();
       $("#search_btn").on("click", function(){
-
+        //清空搜索内容
+        $("#collapseOne").css('display')
+        $('#search_content').html("");
         content_search($('#search_text').val());
       })
 
@@ -252,6 +255,7 @@
         },
         complete: function () {
           appendSearchCard(itemHTML.format(rand_color(), 'test', 'test'));
+          $('#collapseOne').toggle()
           // equal_height()
           //请求完成的处理
         },
