@@ -6,31 +6,43 @@ def parse_rss(feed_url):
     import feedparser
     import ssl
     import re
-
+    def rm_not_exist(code_str, err_item):
+        from functools import reduce
+        err_item = re.compile("'(.*)'").findall(repr(e))[0]
+        #err_end = code_str.find(err_item)
+        #err_pos = code_str.rfind("  ", err_end)
+        #print(err_item, err_pos, err_end)
+        #code_str = code_str[:err_end-1]+code_str[err_pos+1:]
+        items = code_str.split('  ')
+        items = list(filter(lambda x: err_item not in x, items))
+        #print(items)
+        return reduce(lambda x, y: x+y, items)
     ssl._create_default_https_context = ssl._create_unverified_context
     d = feedparser.parse(feed_url)
     # d = feedparser.parse('https://rsshub.app/dysfz')
-
-
-
     # print(json.dumps(dict(d)))
     try:
         #print(d.feed.title)
         #print(d.channel.title)
         #print(d.feed.link)
         #print(d.feed.subtitle)
-        #print(d.channel.description)
+        #print(d.channel.description) 
+        feed_info = {
+            "feed_title": d.feed.title,
+            "feed_link":  d.feed.link,
+            "feed_desc":  d.feed.description,
+        }
         feed_info = {
             "feed_title": d.feed.title,
             "feed_link":  d.feed.link,
             "feed_desc":  d.feed.description,
         }
     except (KeyError,AttributeError) as e:
-        print(repr(e))
-        feed_info = {
-            "feed_title": d.feed.title,
-            "feed_link":  d.feed.link,
-        }
+        print(re.compile("'(.*)'").findall(repr(e)))
+        err_item = re.compile("'(.*)'").findall(repr(e))[0]
+        code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  }'
+        code_str = rm_not_exist(code_str, err_item)
+        feed_info = eval(code_str)
         pass
     print('items length is %d' % (len(d['entries']),))
     rst = list()
@@ -41,10 +53,21 @@ def parse_rss(feed_url):
 
         rst = list(map( lambda x: dict({'title': x.title, 'link': x.link, 'author': x.author, 'description': x.description, 'tags': list(map(lambda y: y['term'] ,x.tags))}, **feed_info), d.entries))
     except (KeyError,AttributeError) as e:
+        print(re.compile("'(.*)'").findall(repr(e)))
+        err_item = re.compile("'(.*)'").findall(repr(e))[0]
+        code_str = "{'title':x.title,  'link':x.link,  'author':x.author,  'description':x.description,  'tags':list(map(lambda y:y['term'],x.tags))  }"
+        #err_pos = code_str.find(err_item)
+        #err_end = code_str.find("  ", err_pos)
+        #print(err_item, err_pos, err_end)
+        #code_str = code_str[:err_pos-1]+code_str[err_end+1:]
+        code_str = rm_not_exist(code_str, err_item)
+        rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
+#        print(eval(code_str))
         try:
-            rst = list(map( lambda x: dict({'title': x.title, 'link': x.link, 'description': x.description}, **feed_info), d.entries))
+            rst = list(map( lambda x: dict({'title': x.title, 'link': x.link,'author':x.author, 'description': x.description}, **feed_info), d.entries))
         except (KeyError,AttributeError) as e:
             print(repr(e))
+        print(rst)
 
     return rst
     # for item in d.entries:
