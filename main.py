@@ -2,7 +2,14 @@
 import rss
 import elastic 
 import json
+import sys
+
 if __name__ == "__main__":
+    # 用来解决编码问题
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+
     #items = rss.parse_rss('https://blog.12ms.xyz/feed')
     #items = rss.parse_rss('https://www.centos.bz/feed/')
     items = rss.parse_rss('http://liyangliang.me/index.xml')
