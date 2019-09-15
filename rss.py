@@ -1,5 +1,5 @@
 
-
+# -*- coding: UTF-8
 def parse_rss(feed_url):
     import datetime
     import json
@@ -7,6 +7,10 @@ def parse_rss(feed_url):
     import ssl
     import re
     def rm_not_exist(code_str, err_item):
+        """
+            用于自动的尝试哪些字段需要解析，
+            比较Hack的方法
+        """
         from functools import reduce
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         #err_end = code_str.find(err_item)
@@ -16,7 +20,10 @@ def parse_rss(feed_url):
         items = code_str.split('  ')
         items = list(filter(lambda x: err_item not in x, items))
         #print(items)
-        return reduce(lambda x, y: x+y, items)
+        # 这里需要使用双空格，加至原形态
+        return reduce(lambda x, y: x+'  '+y, items)
+    
+    # 这里需要设置ssl
     ssl._create_default_https_context = ssl._create_unverified_context
     d = feedparser.parse(feed_url)
     # d = feedparser.parse('https://rsshub.app/dysfz')
@@ -38,11 +45,19 @@ def parse_rss(feed_url):
             "feed_desc":  d.feed.description,
         }
     except (KeyError,AttributeError) as e:
-        print(re.compile("'(.*)'").findall(repr(e)))
+        print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  }'
-        code_str = rm_not_exist(code_str, err_item)
-        feed_info = eval(code_str)
+
+        for _ in range(len(code_str.split('  '))):
+            try:
+                code_str = rm_not_exist(code_str, err_item)
+                feed_info = eval(code_str)                
+            except AttributeError as e:
+                    err_item = re.compile("'(.*)'").findall(repr(e))[0]
+                    continue
+            break
+
         pass
     print('items length is %d' % (len(d['entries']),))
     rst = list()
@@ -53,20 +68,24 @@ def parse_rss(feed_url):
 
         rst = list(map( lambda x: dict({'title': x.title, 'link': x.link, 'author': x.author, 'description': x.description, 'tags': list(map(lambda y: y['term'] ,x.tags))}, **feed_info), d.entries))
     except (KeyError,AttributeError) as e:
-        print(re.compile("'(.*)'").findall(repr(e)))
+        print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
+
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
         code_str = "{'title':x.title,  'link':x.link,  'author':x.author,  'description':x.description,  'tags':list(map(lambda y:y['term'],x.tags))  }"
-        #err_pos = code_str.find(err_item)
-        #err_end = code_str.find("  ", err_pos)
-        #print(err_item, err_pos, err_end)
-        #code_str = code_str[:err_pos-1]+code_str[err_end+1:]
-        code_str = rm_not_exist(code_str, err_item)
-        rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
-#        print(eval(code_str))
-        try:
-            rst = list(map( lambda x: dict({'title': x.title, 'link': x.link,'author':x.author, 'description': x.description}, **feed_info), d.entries))
-        except (KeyError,AttributeError) as e:
-            print(repr(e))
+
+        for _ in range(len(code_str.split('  '))):
+            try:
+                code_str = rm_not_exist(code_str, err_item)
+                if err_item == "author": 
+                    feed_info['author'] = "unknown"
+
+                rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
+                    
+            except AttributeError as e:
+                    err_item = re.compile("'(.*)'").findall(repr(e))
+                    continue
+            break
+
         print(rst)
 
     return rst

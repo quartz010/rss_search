@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="12ms">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Rssearch</title>
+
+  <link rel="canonical" href="https://v4ing.bootcss.com/docs/4.3/examples/jumbotron/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="/static/css/jumbotron.css" rel="stylesheet">
+  <!-- <link href="./Jumbotron Template · Bootstrap_files/jumbotron.css" rel="stylesheet"> -->
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="">博搜？</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="">Disabled</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="">Action</a>
+            <a class="dropdown-item" href="">Another action</a>
+            <a class="dropdown-item" href="">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Hey,there!</h1>
+        <p>现在在快速的拓展RSS的索引，如果你有，或者你希望有，欢迎在下方提交</p>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input type="text" class="form-control" id="rss_submit" placeholder="请输入RSS源">
+          </div>
+          <button type="submit" class="btn btn-primary btn-default">提交 >> </button>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <!-- <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne"> -->
+              </button>
+
+                <div class="form-inline" role="form" οnsubmit="return false;">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="search_text" placeholder="请输入搜索内容">
+                  </div>
+                  <button type="button" id="search_btn" class="btn btn-primary btn-default">Search it >> </button>
+                </div>
+            </h2>
+          </div>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row" id='search_content'>
+
+                <div class="col-md-4 col-sm-6">
+
+                  <div class="card">
+                    <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+                    <h4 class="card-header">测试卡片</h4>
+                    <div class="card-body">
+                      <h4 class="card-title">4 test cases</h4>
+                      <p class="card-text">
+                        <label>描述:</label>
+                        <text>你知道的</text>
+                        </br>
+                        <label>描述:</label>
+                        <text>未知</text>
+                      </p>
+                      <a href="#" class="btn btn-secondary">Go</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 id="cards-with-equal-height-text-title">随机推荐</h3>
+
+      <!-- Example row of columns -->
+      <div class="row" id="content">
+        <style>
+          .card {
+            margin-top: 5px;
+            margin-bottom: 5px
+          }
+        </style>
+
+        <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
+          <div class="card">
+            <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
+            <h4 class="card-header">测试卡片</h4>
+
+            <div class="card-body">
+              <h4 class="card-title">4 test cases</h4>
+              <p class="card-text">
+                <label>描述:</label>
+                <text>你知道的</text>
+                </br>
+                <label>描述:</label>
+                <text>未知</text>
+              </p>
+              <a href="#" class="btn btn-secondary">Go</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div> <!-- /container -->
+    <hr>
+
+    <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+      <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+
+    </div>
+  </main>
+
+  <footer class="container">
+    <p>© Company 2019-2019</p>
+  </footer>
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <!-- <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/bootstrap.bundle.js"></script>
+  <script src="/static/js/jquery-equal-height.min.js"></script>
+
+  <script type="text/javascript">
+
+    String.prototype.format = function () {
+      //将arguments转化为数组（ES5中并非严格的数组）
+      var args = Array.prototype.slice.call(arguments);
+      var count = 0;
+      //通过正则替换%s
+      return this.replace(/%s/g, function (s, i) {
+        return args[count++];
+      });
+    }
+    $(document).ready(function () {
+      $(window).on('load', function (event) {
+        equal_height();
+      });
+      $(window).resize(function (event) {
+        equal_height();
+      });
+      init_cards();
+      $("#search_btn").on("click", function(){
+        //清空搜索内容
+        $("#collapseOne").css('display','none');
+        $('#search_content').html("");
+        content_search($('#search_text').val());
+      })
+
+    })
+
+    itemHTML = '<div class="col-md-4 col-sm-6 jQueryEqualHeight3"><div class="card"  style="background:%s"><h5 class="card-header">%s</h5>\
+        <div class="card-body" >\
+        <p class="card-text">\
+        <label>作者:</label><text>%s</text></br>\
+        <label>描述:</label><text>%s</text></br>\
+        <label>日期:</label><text>%s</text></br>\
+        </p><a href="%s" class="btn btn-secondary">Go</a></div></div></div>'
+    function appendCard(Txt) {
+      document.getElementById("content").innerHTML =
+        document.getElementById("content").innerHTML + "<br/> "
+        + Txt;
+    }
+    function appendSearchCard(Txt) {
+      document.getElementById("search_content").innerHTML =
+        document.getElementById("search_content").innerHTML + "<br/> "
+        + Txt;
+    }
+    function repeat(n, Txt) {
+      for (i = 0; i < n; i++) {
+        document.getElementById("content").innerHTML =
+          document.getElementById("content").innerHTML + "<br /> "
+          + Txt;
+      }
+    }
+    function content_search(search_text) {
+      $.ajax({
+        //url: "/static/res.json", //请求的url地址
+        url: "/api2", //请求的url地址
+        dataType: "json", //返回格式为json
+        async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+        data: { "q": search_text }, //参数值
+        type: "GET", //请求方式
+        beforeSend: function () {
+          //请求前的处理
+        },
+        success: function (req) {
+          //请求成功时处理
+          console.log(req);
+          req.map(x => appendSearchCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
+        },
+        complete: function () {
+          appendSearchCard(itemHTML.format(rand_color(), 'test', 'test'));
+          $('#collapseOne').toggle()
+          // equal_height()
+          //请求完成的处理
+        },
+        error: function () {
+          //请求出错处理
+        }
+      });
+
+    }
+    function init_cards() {
+      $.ajax({
+        //url: "/static/res.json", //请求的url地址
+        url: "/api", //请求的url地址
+        dataType: "json", //返回格式为json
+        async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+        data: { "id": "value" }, //参数值
+        type: "GET", //请求方式
+        beforeSend: function () {
+          //请求前的处理
+        },
+        success: function (req) {
+          //请求成功时处理
+          console.log(req);
+          req.map(x => appendCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
+          //x = req[0]
+          //appendCard(itemHTML.format(x.title, x.author, x.description))
+        },
+        complete: function () {
+          appendCard(itemHTML.format(rand_color(), 'test', 'test'));
+          equal_height()
+          //请求完成的处理
+        },
+        error: function () {
+          //请求出错处理
+        }
+      });
+    }
+    function rand_color() {
+      colors = ['#f3a683', '#f7d794', '#778beb', '#e77f67', '#cf6a87', '#cf6a87', '#f5cd79', '#63cdda', '#e66767', '#786fa6']
+      cnum = Math.floor(Math.random() * 100 % 10)
+      return colors[cnum]
+    }
+    function equal_height() {
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-title');
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-text');
+      $('.jQueryEqualHeight3').jQueryEqualHeight('.card');
+    }
+  </script>
+
+</body>
+
+</html>
