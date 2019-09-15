@@ -27,8 +27,9 @@
 
 <body class="responsive">
   <div class="container">
-
-    <h4 id="cards-with-equal-height-text-title">随机推荐</h4>
+    <h3 id="cards-with-equal-height-text-title">搜点什么</h3>
+      
+    <h3 id="cards-with-equal-height-text-title">随机推荐</h3>
     <br>
     <div id="content" class="row">
       <div class="col-md-4 col-sm-6 jQueryEqualHeight3">
@@ -47,7 +48,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <!-- .row -->
@@ -123,12 +123,6 @@
       });
     }
     function equal_height() {
-      // Equal Card Height
-      // $('.jQueryEqualHeight1').jQueryEqualHeight();
-      // // Equal Card Height and Text Height
-      // $('.jQueryEqualHeight2').jQueryEqualHeight('.card .card-body .card-text');
-      // $('.jQueryEqualHeight2').jQueryEqualHeight('.card');
-      // // Equal Card Height, Text Height and Title Height
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-title');
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card .card-body .card-text');
       $('.jQueryEqualHeight3').jQueryEqualHeight('.card');
