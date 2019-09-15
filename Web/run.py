@@ -44,5 +44,32 @@ def get_es():
         return res_list
     res_list = es_rand()
     return json.dumps(res_list)
+
+@app.route('/api2')
+def search_es():
+    import json
+    def es_search(kword):
+        import json
+        #res = es.search(index="test", body={"query": {"match_all": {}}})
+        #res = es.search(index="test", q="author : *")
+        res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+        print("Got %d Hits:" % res['hits']['total']['value'])
+        #open('es.json', "w+").write(json.dumps(res))
+        res_list = list()
+        for hit in res['hits']['hits']:
+            try:
+                #print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
+                print(dict(hit["_source"], **{"_score" :hit["_score"]}))
+                res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
+            except KeyError as e:
+                print(repr(e))
+        return res_list
+        #rst = es.get(index="test", id=1)
+        #print(rst)
+
+    res_list = es_search()
+    return json.dumps(res_list)
+    
+
 if __name__ == '__main__':
     app.run(debug=True)
