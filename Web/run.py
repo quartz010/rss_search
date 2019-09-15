@@ -19,7 +19,7 @@ def hello_world():
 
 @app.route('/v2')
 def index():
-    return render_template('index.html')
+    return render_template('JT.html')
 
 @app.route('/v3')
 def table():
