@@ -111,7 +111,7 @@
             <div class="card-body">
               <div class="row" id='search_content'>
 
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6" style="display:none;">
 
                   <div class="card">
                     <!-- <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap"> -->
@@ -253,7 +253,7 @@
           req.map(x => appendSearchCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
         },
         complete: function () {
-          appendSearchCard(itemHTML.format(rand_color(), 'test', 'test'));
+          appendSearchCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', ''));
           $('#collapseOne').toggle()
           // equal_height()
           //请求完成的处理
