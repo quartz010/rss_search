@@ -6,7 +6,7 @@ es = elasticsearch.Elasticsearch(['sgk:9200'])
 
 def _es_chk_exist(title):
     """
-        用呀判断是否条目已存在的函数，这里会是一个性能瓶颈，需要进行单条的遍历
+        用来判断是否条目已存在的函数，这里会是一个性能瓶颈，需要进行单条的遍历
     """
     res = es.search(index="test", q="title : \"{kword}\"".format(kword=title))
     return False if res['hits']['total']['value'] == 0 else True
@@ -25,7 +25,12 @@ def es_search(kword):
     import json
     #res = es.search(index="test", body={"query": {"match_all": {}}})
     #res = es.search(index="test", q="author : *")
-    res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+    
+    # 查询语句需要修改一下，很傻
+    # res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+        
+    res = es.search(index="test", body={"query": {"multi_match" : {"query" : kword,"fields": ["_all"],"fuzziness": "AUTO"}}})
+    
     print("Got %d Hits:" % res['hits']['total']['value'])
     #open('es.json', "w+").write(json.dumps(res))
     res_list = list()
