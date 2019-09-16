@@ -252,7 +252,7 @@
           req.map(x => appendSearchCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
         },
         complete: function () {
-          // appendSearchCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', ''));
+          // appendSearchCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', '2019', 'https://blog.12ms.xyz'));
           $('#collapseOne').toggle()
           // equal_height()
           //请求完成的处理
@@ -282,7 +282,7 @@
           //appendCard(itemHTML.format(x.title, x.author, x.description))
         },
         complete: function () {
-          appendCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', ''));
+          appendCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', '2019', 'https://blog.12ms.xyz'));
           equal_height()
           //请求完成的处理
         },
