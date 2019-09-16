@@ -33,11 +33,7 @@ def parse_rss(feed_url):
         #print(d.feed.link)
         #print(d.feed.subtitle)
         #print(d.channel.description) 
-        feed_info = {
-            "feed_title": d.feed.title,
-            "feed_link":  d.feed.link,
-            "feed_desc":  d.feed.description,
-        }
+
         feed_info = {
             "feed_title": d.feed.title,
             "feed_link":  d.feed.link,
@@ -63,7 +59,9 @@ def parse_rss(feed_url):
     try:
         # 这里去除html标签 防止解析，并且限制字符长度
         for i in range(len(d.entries)):
-            d.entries[i].description = re.compile(r'<[^>]+>',re.S).sub('',d.entries[i].description)[:64]
+            # 保留完全desc 提高搜索精度 
+            feed_info['details'] = re.compile(r'<[^>]+>',re.S).sub('',d.entries[i].description)    
+            d.entries[i].description = feed_info['details'][:64]
 
         rst = list(map( lambda x: dict({'title': x.title, 'link': x.link, 'author': x.author, 'description': x.description, 'tags': list(map(lambda y: y['term'] ,x.tags))}, **feed_info), d.entries))
     except (KeyError,AttributeError) as e:
