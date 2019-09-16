@@ -35,7 +35,6 @@
   <!-- Custom styles for this template -->
   <link href="/static/css/jumbotron.css" rel="stylesheet">
   <!-- <link href="./Jumbotron Template · Bootstrap_files/jumbotron.css" rel="stylesheet"> -->
-
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="">博搜？</a>
@@ -129,7 +128,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -182,6 +180,8 @@
   <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/bootstrap.bundle.js"></script>
   <script src="/static/js/jquery-equal-height.min.js"></script>
+  <script src="/static/layer/layer.js"></script>
+
 
   <script type="text/javascript">
 
@@ -271,6 +271,8 @@
         async: true,//请求是否异步，默认为异步，这也是ajax重要特性
         data: { "id": "value" }, //参数值
         type: "GET", //请求方式
+        tryCount : 0,
+        retryLimit : 2,
         beforeSend: function () {
           //请求前的处理
         },
@@ -278,16 +280,33 @@
           //请求成功时处理
           console.log(req);
           req.map(x => appendCard(itemHTML.format(rand_color(), x.title, x.author, x.description, x.timestamp, x.link)))
+          appendCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', '2019', 'https://blog.12ms.xyz'));
           //x = req[0]
           //appendCard(itemHTML.format(x.title, x.author, x.description))
         },
         complete: function () {
-          appendCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', '2019', 'https://blog.12ms.xyz'));
           equal_height()
           //请求完成的处理
         },
-        error: function () {
+        error: function (xhr, textStatus, errorThrown) {
           //请求出错处理
+          if (xhr.status !== 200) {
+              this.tryCount++;
+              if (this.tryCount <= this.retryLimit) {
+                  //try again
+                  $.ajax(this);
+                  return;
+              } else {
+                layer.msg('服务器开小差啦，刷新试试？');
+                appendCard(itemHTML.format(rand_color(), '12ms的小窝', '12ms', '百草园？', '2019', 'https://blog.12ms.xyz'));
+              }           
+              return;
+          }
+          // if (xhr.status == 500) {
+          //     //handle error
+          // } else {
+          //     //handle error
+          // }
         }
       });
     }
