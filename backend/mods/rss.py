@@ -38,11 +38,12 @@ def parse_rss(feed_url):
             "feed_title": d.feed.title,
             "feed_link":  d.feed.link,
             "feed_desc":  d.feed.description,
+            "author": d.feed.author
         }
     except (KeyError,AttributeError) as e:
         print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
-        code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  }'
+        code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  "author": d.feed.author,  }'
 
         for _ in range(len(code_str.split('  '))):
             try:
@@ -73,7 +74,8 @@ def parse_rss(feed_url):
         for _ in range(len(code_str.split('  '))):
             try:
                 code_str = rm_not_exist(code_str, err_item)
-                if err_item == "author": 
+                # 判断逻辑
+                if err_item == "author" and feed_info.get('author') == '': 
                     feed_info['author'] = "unknown"
 
                 rst = list(map( lambda x: dict(eval(code_str), **feed_info), d.entries))
