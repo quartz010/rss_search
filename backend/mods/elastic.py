@@ -27,7 +27,9 @@ def es_search(kword):
     #res = es.search(index="test", q="author : *")
     
     # 查询语句需要修改一下，很傻
-    res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+    # res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+        
+    res = es.search(index="test", body={"query": {"multi_match" : {"query" : kword,"fields": ["_all"],"fuzziness": "AUTO"}}})
     
     print("Got %d Hits:" % res['hits']['total']['value'])
     #open('es.json', "w+").write(json.dumps(res))
