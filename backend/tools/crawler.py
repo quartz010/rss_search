@@ -153,7 +153,8 @@ while True:
     print(i)
     if i % 10 == 0:
         fetch_xml(res_list)
-    
+        # 释放内存防止oom
+        res_list = res_list[10:] 
     if i >= len(res_list):
         break
     # if len(res_list)>10:
