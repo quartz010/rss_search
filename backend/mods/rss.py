@@ -44,7 +44,7 @@ def parse_rss(feed_url):
     except (KeyError,AttributeError) as e:
         print('no such key:' + re.compile("'(.*)'").findall(repr(e))[0])
         err_item = re.compile("'(.*)'").findall(repr(e))[0]
-        code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_desc":d.feed.description,  "author": d.feed.author,  }'
+        code_str = '{"feed_title":d.feed.title,  "feed_link":d.feed.link,  "feed_src": feed_url,  "feed_desc":d.feed.description,  "author": d.feed.author,  }'
 
         for _ in range(len(code_str.split('  '))):
             try:
