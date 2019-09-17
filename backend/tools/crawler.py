@@ -52,6 +52,8 @@ def search_for_cross(url):
         """
         import re
         soup = BeautifulSoup(html_str, 'html.parser')   #文档对象
+        if site_url == "http://":
+            return []
         # 找不到通用方法出此下策
         if site_url.count('.') == 2:
             site_kword = re.findall(re.compile(r'[.](.*)[.]', re.S) , site_url)[0]
@@ -75,7 +77,7 @@ def search_for_cross(url):
         'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
     }
     try:
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, timeout=5)
         html = r.text
         url = r.url
     except Exception as e:
@@ -108,7 +110,7 @@ def try_feed_link(domain):
         'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
     }
     try:
-        r = requests.get(domain, headers=headers)
+        r = requests.get(domain, headers=headers, timeout=5)
         html = r.text
     except Exception as e:
         print(repr(e))
@@ -126,6 +128,21 @@ def try_feed_link(domain):
     # feed_urls = ['/feed', '/atom.xml', 'rss', '']
     return res[0] if res != [] else ""
 
+
+def fetch_xml(res_list):
+    for i in res_list:
+        feed_str = try_feed_link(i)
+        if feed_str:
+            if 'http://' not in feed_str or 'https://' not in feed_str:
+                print(i+feed_str)
+                f.write(i+feed_str+'\n')
+            else:
+                print(feed_str)
+                f.write(feed_str+'\n')
+        else:
+            pass
+
+f = open('out.log','a+') 
 while True:
     # res_list += map(lambda x: dict({'url':x, 'status':False}) ,search_for_cross(res_list[i]))
     res_list += list(map(lambda x: 'http://'+get_domain(x), search_for_cross(res_list[i])))
@@ -134,21 +151,13 @@ while True:
     print(res_list, len(res_list))
     i = i + 1
     print(i)
-    if i > 10 or i >= len(res_list):
+    if i % 10 == 0:
+        fetch_xml(res_list)
+    
+    if i >= len(res_list):
         break
     # if len(res_list)>10:
     #     break
 print(res_list, len(res_list))
 
 # print(list(map(lambda x: x+try_feed_link(x), res_list)))
-
-for i in res_list:
-    feed_str = try_feed_link(i)
-    if feed_str:
-        if 'http://' not in feed_str:
-            print(i+feed_str)
-        else:
-            print(feed_str)
-    else:
-        pass
-
