@@ -133,7 +133,7 @@ def fetch_xml(res_list):
     for i in res_list:
         feed_str = try_feed_link(i)
         if feed_str:
-            if 'http://' not in feed_str or 'https://' not in feed_str:
+            if 'http://' not in feed_str and 'https://' not in feed_str:
                 print(i+feed_str)
                 f.write(i+feed_str+'\n')
             else:
