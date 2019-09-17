@@ -38,6 +38,7 @@ def parse_rss(feed_url):
             "feed_title": d.feed.title,
             "feed_link":  d.feed.link,
             "feed_desc":  d.feed.description,
+            "feed_src": feed_url,
             "author": d.feed.author
         }
     except (KeyError,AttributeError) as e:
@@ -55,6 +56,7 @@ def parse_rss(feed_url):
             break
 
         pass
+    print('feed_info')
     print('items length is %d' % (len(d['entries']),))
     rst = list()
     try:
@@ -85,7 +87,7 @@ def parse_rss(feed_url):
                     continue
             break
 
-        print(rst)
+        # print(rst)
 
     return rst
     # for item in d.entries:
