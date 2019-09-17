@@ -36,16 +36,16 @@ and they lived at the bottom of a well.</p>
  
 
 
-
+'''
+本来考虑是使用树状自建来进行爬取的，不过，发现没那个必要。
+'''
 
 
 
 
 def search_for_cross(url):
     import requests
-    headers = {
-        'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
-    }
+
     def find_cross_url(html_str, site_url): 
         """
             拿到网站的所有非同源链接
@@ -61,37 +61,94 @@ def search_for_cross(url):
         hrefs = list()
         for k in soup.find_all('a'):
             try:
-                hrefs.append(k['href'])
+                excluding = ['weibo', 'github', 'twitter', 'google', 'youtube', 'linkedin', 'facebook','csdn','aliyun', 'hexo' ,'gov', '163'
+                        'oschinas', 'gitee', 'beian', 'zhihu', 'git'
+                ]
+                if list(filter(lambda x: x in k['href'], excluding)) == []:
+                    hrefs.append(k['href'])
             except KeyError as e:
                 # print(repr(e), k)
                 pass
         # print(list(map(lambda x: x['href'], soup.find_all('a'))))
         return filter(lambda y: re.findall(re.compile(r'^(?!/)(.*)[.]', re.S), y) ,filter(lambda x: not re.findall(re.compile(site_kword), x), hrefs))
-    r = requests.get(url, headers=headers)
-    res = list(find_cross_url(r.text, r.url))
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
+    }
+    try:
+        r = requests.get(url, headers=headers)
+        html = r.text
+        url = r.url
+    except Exception as e:
+        print(repr(e))
+        html = ''
+    res = list(find_cross_url(html, url))
+
     return res
 
 # rst = search_for_cross('http://wwxiong.com/')
 # print(len(rst), rst)
+def get_domain(url):
+    import sys
+    if sys.version < '3':
+        from urlparse import urlparse
+    else:
+        from urllib.parse import urlparse
+    url = url
+    parse_result = urlparse(url)
+    return parse_result.netloc
 
-res_list = ['http://wwxiong.com/']
-res_list = ['https://blog.12ms.xyz/']
+res_list = ['https://carey.akhack.com/']
+# res_list = ['https://blog.12ms.xyz/']
 
 i = 0
 
+def try_feed_link(domain):
+    import requests
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
+    }
+    try:
+        r = requests.get(domain, headers=headers)
+        html = r.text
+    except Exception as e:
+        print(repr(e))
+        html = ''
+    soup = BeautifulSoup(html, 'html.parser')   #文档对象
+    hrefs = list()
+    for k in soup.find_all('a'):
+        try:
+            hrefs.append(k['href'])
+            # print(hrefs)
+        except KeyError as e:
+            # print(repr(e), k)
+            pass
+    res = list(filter(lambda x: re.match(r".*\.xml$", x), hrefs))
+    # feed_urls = ['/feed', '/atom.xml', 'rss', '']
+    return res[0] if res != [] else ""
+
 while True:
     # res_list += map(lambda x: dict({'url':x, 'status':False}) ,search_for_cross(res_list[i]))
-    res_list += search_for_cross(res_list[i])
-    print(res_list)
-
+    res_list += list(map(lambda x: 'http://'+get_domain(x), search_for_cross(res_list[i])))
+    # res_list += list(search_for_cross(res_list[i]))
     res_list = list(set(res_list))
-    print(res_list)
+    print(res_list, len(res_list))
     i = i + 1
     print(i)
-    if i > 10:
-        print("11")
+    if i > 10 or i >= len(res_list):
         break
-
+    # if len(res_list)>10:
+    #     break
 print(res_list, len(res_list))
 
+# print(list(map(lambda x: x+try_feed_link(x), res_list)))
+
+for i in res_list:
+    feed_str = try_feed_link(i)
+    if feed_str:
+        if 'http://' not in feed_str:
+            print(i+feed_str)
+        else:
+            print(feed_str)
+    else:
+        pass
 
