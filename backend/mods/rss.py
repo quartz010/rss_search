@@ -56,7 +56,7 @@ def parse_rss(feed_url):
             break
 
         pass
-    print('feed_info')
+    print(feed_info)
     print('items length is %d' % (len(d['entries']),))
     rst = list()
     try:
