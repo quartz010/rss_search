@@ -148,7 +148,9 @@ while True:
     # res_list += map(lambda x: dict({'url':x, 'status':False}) ,search_for_cross(res_list[i]))
     res_list += list(map(lambda x: 'http://'+get_domain(x), search_for_cross(res_list[i])))
     # res_list += list(search_for_cross(res_list[i]))
+    orgList = res_list
     res_list = list(set(res_list))
+    res_list.sort(key=orgList.index)
     print(res_list, len(res_list))
     i = i + 1
     print(i)
