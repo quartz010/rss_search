@@ -2,6 +2,7 @@
 import elasticsearch
 import datetime
 import time
+from elasticsearch import helpers
 es = elasticsearch.Elasticsearch(['sgk:9200'])
 
 def _es_chk_exist(title):
@@ -24,9 +25,31 @@ def es_bulk_index(bodys):
         print('add:' +str(len(bodys)))
         start_time = time.time()
         actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": "rss_by_crawler","_source": x}, bodys))
-        res = elasticsearch.helpers.bulk(es, actions)
+        res = helpers.bulk(es, actions)
         end_time = time.time()
         print("{} {}s".format(res, end_time - start_time))
+
+def es_index_search(_index,kword):
+    import json
+    #res = es.search(index="test", body={"query": {"match_all": {}}})
+    #res = es.search(index="test", q="author : *")
+    
+    # 查询语句需要修改一下，很傻
+    # res = es.search(index="test", q="author : {kword} or title : {kword} or description : {kword}".format(kword=kword))
+        
+    res = es.search(index=_index, body={"query": {"multi_match" : {"query" : kword,"fields": ["_all"],"fuzziness": "AUTO"}}})
+    
+    print("Got %d Hits:" % res['hits']['total']['value'])
+    #open('es.json', "w+").write(json.dumps(res))
+    res_list = list()
+    for hit in res['hits']['hits']:
+        try:
+            #print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
+            print(dict(hit["_source"], **{"_score" :hit["_score"]}))
+            res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
+        except KeyError as e:
+            print(repr(e))
+    return res_list
 
 def es_search(kword):
     import json
