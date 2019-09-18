@@ -141,6 +141,7 @@ def fetch_xml(res_list):
                 f.write(feed_str+'\n')
         else:
             pass
+    f.flush()
 
 f = open('out.log','a+') 
 while True:
