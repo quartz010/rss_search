@@ -24,6 +24,7 @@ def es_index(bodys):
 def es_bulk_index(bodys):
         print('add:' +str(len(bodys)))
         start_time = time.time()
+        bodys = list(map(lambda x: dict(x ,**{"timestamp": datetime.datetime.utcnow()}), bodys))
         actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": "rss_by_crawler","_source": x}, bodys))
         res = helpers.bulk(es, actions)
         end_time = time.time()
