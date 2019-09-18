@@ -124,7 +124,7 @@ def try_feed_link(domain):
         except KeyError as e:
             # print(repr(e), k)
             pass
-    res = list(filter(lambda x: re.match(r".*\.xml$", x), hrefs))
+    res = list(filter(lambda y: not re.search('sitemap', y) ,(filter(lambda x: re.match(r".*\.xml$", x), hrefs))))
     # feed_urls = ['/feed', '/atom.xml', 'rss', '']
     return res[0] if res != [] else ""
 
