@@ -8,7 +8,7 @@ import sys
 
 if __name__ == "__main__":
     # 用来解决编码问题
-    if sys.version < "2.6":
+    if sys.version < "3":
         reload(sys)
         sys.setdefaultencoding('utf8')
 
