@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 import elasticsearch
 import datetime
-
+import time
 es = elasticsearch.Elasticsearch(['sgk:9200'])
 
 def _es_chk_exist(title):
@@ -20,6 +20,13 @@ def es_index(bodys):
         rst = es.index(index='test', body=body, id=None)
         print(rst['result'])
 
+def es_bulk_index(bodys):
+        print('add:' +str(len(bodys)))
+        start_time = time.time()
+        actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": "rss_by_crawler","_source": x}, bodys))
+        res = elasticsearch.helpers.bulk(es, actions)
+        end_time = time.time()
+        print("{} {}s".format(res, end_time - start_time))
 
 def es_search(kword):
     import json
