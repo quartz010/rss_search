@@ -22,13 +22,14 @@ def es_index(bodys):
         print(rst['result'])
 
 def es_bulk_index(bodys):
-        print('add:' +str(len(bodys)))
-        start_time = time.time()
-        bodys = list(map(lambda x: dict(x ,**{"timestamp": datetime.datetime.utcnow()}), bodys))
-        actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": "rss_by_crawler","_source": x}, bodys))
-        res = helpers.bulk(es, actions)
-        end_time = time.time()
-        print("{} {}s".format(res, end_time - start_time))
+    bodys = list(filter(lambda x: not  _es_chk_exist(x['title']), bodys))
+    print('add:' +str(len(bodys)))
+    start_time = time.time()
+    bodys = list(map(lambda x: dict(x ,**{"timestamp": datetime.datetime.utcnow()}), bodys))
+    actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": "rss_by_crawler","_source": x}, bodys))
+    res = helpers.bulk(es, actions)
+    end_time = time.time()
+    print("{} {}s".format(res, end_time - start_time))
 
 def es_index_search(_index,kword):
     import json
