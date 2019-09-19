@@ -89,3 +89,8 @@ def es_rand():
             print(repr(e))
     print(res_list)
     return res_list
+
+def es_get_all_feed_src():
+    body = {"size":0,"aggs" : {"rsss" : {"terms" : { "field" : "feed_src.keyword" }}}}
+    res = es.search(index='test', body=body)
+    print("Got %d Hits:" % res['hits']['total']['value'])
