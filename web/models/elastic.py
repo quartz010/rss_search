@@ -69,7 +69,7 @@ def es_search(kword):
     for hit in res['hits']['hits']:
         try:
             #print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
-            print(dict(hit["_source"], **{"_score" :hit["_score"]}))
+            print(dict({'title':hit["_source"]['title']}, **{"_score" :hit["_score"]}))
             res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
         except KeyError as e:
             print(repr(e))
@@ -78,7 +78,7 @@ def es_search(kword):
     #print(rst)
 
 def es_rand():
-    res = es.search(index='test', body={"from": 0,"size": 1,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
+    res = es.search(index='test', body={"from": 0,"size": 20,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
     res_list = list()
     for hit in res['hits']['hits']:
         try:
