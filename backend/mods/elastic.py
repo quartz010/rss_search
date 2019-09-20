@@ -94,3 +94,4 @@ def es_get_all_feed_src():
     body = {"size":0,"aggs" : {"rsss" : {"terms" : { "field" : "feed_src.keyword" }}}}
     res = es.search(index='test', body=body)
     print("Got %d Hits:" % res['hits']['total']['value'])
+    print(res['es_get_all_feed_src']['rsss']['buckets'])
