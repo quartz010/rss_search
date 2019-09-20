@@ -1,2 +1,7 @@
+
 def init_app(app):
-    pass
+    return app
+
+
+from . import elastic
+from . import rss

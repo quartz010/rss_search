@@ -5,13 +5,6 @@ from flask import abort
 from flask import current_app
 
 
-def create_app():
-    import models, routes, services
-    app = Flask(__name__)
-    models.init_app(app)
-    routes.init_app(app)
-    services.init_app(app)
-    return app
 
 
 app = Flask(__name__)
@@ -82,7 +75,3 @@ def search_es():
             abort(500)
 
     return json.dumps(res_list)
-    
-
-if __name__ == '__main__':
-    app.run(debug=True)
