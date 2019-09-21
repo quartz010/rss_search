@@ -1,4 +1,5 @@
 from ..models import elastic
+from ..services import tasks
 
 from . import main
 from flask import render_template
@@ -12,6 +13,7 @@ import json
 
 @main.route('/')
 def hello_world():
+    tasks.my_background_task.apply_async(args=[10, 20])
     return 'Hello World!'
 
 
