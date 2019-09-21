@@ -1,6 +1,9 @@
 # -*- coding: UTF-8
 import sys
-from .. import models
+sys.path.append("..")
+from ..models import elastic
+from ..models import rss
+
 import json
 import sys
 
@@ -19,11 +22,11 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(sys.argv[0] +' <url>')
         exit()
-    items = models.rss.parse_rss(sys.argv[1])
+    items = rss.parse_rss(sys.argv[1])
     #items = rss.parse_rss('https://jerryzou.com/feed')
     #items = rss.parse_rss('https://www.centos.bz/feed/')
     
-    models.elastic.es_index(items, 'test')
+    elastic.es_index(items, 'test')
     #res_list = elastic.es_search("卡夫卡")
     #open('res.json', "w+").write(json.dumps(res_list))
     #elastic._es_chk_exist(u'Kafka 简单部署使用sdsdsd指北')
