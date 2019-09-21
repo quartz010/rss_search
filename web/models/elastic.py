@@ -13,7 +13,7 @@ def _es_chk_exist(_index, _title):
     res = es.search(index=_index, q="title : \"{kword}\"".format(kword=_title))
     return False if res['hits']['total']['value'] == 0 else True
 
-def es_index(_index, _bodys):
+def es_index(_bodys, _index='test'):
     bodys = list(filter(lambda x: not  _es_chk_exist(_index, x['title']), _bodys))
     print('add:' +str(len(bodys)))
     for body in bodys:
