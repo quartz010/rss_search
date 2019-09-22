@@ -4,7 +4,8 @@ import datetime
 import time
 from elasticsearch import helpers
 
-es = elasticsearch.Elasticsearch(['sgk:9200'])
+ES_HOST = 'sgk:9200'
+es = elasticsearch.Elasticsearch([ES_HOST])
 
 def _es_chk_exist(_index, _title):
     """
@@ -21,6 +22,15 @@ def es_index(_bodys, _index='test'):
         rst = es.index(index=_index, body=body, id=None)
         print(rst['result'])
 
+def _es_chk_id_exist(_index, _id):
+    """
+        用来判断是否条目已存在的函数，现在直接使用 HEAD
+    """
+    import requests
+    res = requests.head("http://"+ES_HOST+'/_doc/'+_id)
+
+    return False if res.status_code == 404 else True
+
 def gen_es_id(org_str):
     import hashlib
     hash_str = hashlib.md5(org_str.encode("utf-8")).hexdigest()
@@ -28,7 +38,7 @@ def gen_es_id(org_str):
 
 def es_bulk_index(_bodys, _index='test'):
 
-    bodys = list(filter(lambda x: not _es_chk_exist(_index, x['title']), _bodys))
+    bodys = list(filter(lambda x: not _es_chk_id_exist(_index, gen_es_id(x['title'])), _bodys))
     print('add:' +str(len(bodys)))
     start_time = time.time()
     # 给每一项补充时间戳
