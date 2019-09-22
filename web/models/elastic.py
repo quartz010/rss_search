@@ -40,8 +40,7 @@ def _es_chk_id_exist(_index, _id):
         用来判断是否条目已存在的函数，现在直接使用 HEAD 比前面的轮询好一点
     """
     import requests
-    res = requests.head("http://"+ES_HOST+'/_doc/'+_id)
-
+    res = requests.head("http://"+ES_HOST+'/'+_index+'/_doc/'+_id)
     return False if res.status_code == 404 else True
 
 def gen_es_id(org_str):
@@ -59,7 +58,7 @@ def es_bulk_index(_bodys, _index='test'):
     # 使用自定义的MD5ID
     actions = list(map(lambda x: {"_index": _index,"_id": gen_es_id(x['title']) ,"_source": x}, bodys))
     res = helpers.bulk(es, actions)
-
+    print(res)
 
 def es_index_search(_index,kword):
     import json
@@ -108,6 +107,9 @@ def es_search(kword):
     #print(rst)
 
 def es_rand():
+    """
+        随机返回部分的查询结果
+    """
     res = es.search(index='test', body={"from": 0,"size": 20,"query": {"match_all": {}},"sort":{"_script": {"script": "Math.random()","type": "number", "order": "asc"}}})
     res_list = list()
     for hit in res['hits']['hits']:
@@ -127,13 +129,3 @@ def es_get_all_feed_src():
 
 
 
-
-{"query" : {"constant_score" : {"filter" : {"terms" : {"title" : [20, 30]}}}}}
-
-
-bodys = list(filter(lambda x: not  _es_chk_exist(_index, x['title']), _bodys))
-
-
-
-
-curl -H 'Content-Type:application/json' -XPOST "http://127.0.0.1:9200/test/_search" -d '{"terms" : {"title" : [20, 30]}}'
