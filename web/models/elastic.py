@@ -8,8 +8,8 @@ ES_HOST = 'sgk:9200'
 es = elasticsearch.Elasticsearch([ES_HOST])
 
 def time_me(fn):
-    u'''
-    函数耗时修饰器
+    '''
+        函数耗时修饰器
     '''
     def _wrapper(*args, **kwargs):
         start = time.clock()
