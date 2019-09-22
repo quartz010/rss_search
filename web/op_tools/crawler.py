@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
  
 from bs4 import BeautifulSoup
-import urllib.request
+# import urllib.request
 import re
-
+import time
 """
   简单的一个爬虫，很简单，抓取页面a标签，判断是否同源
   把不同源入队，搜索 feed等路径。
@@ -99,7 +99,6 @@ def get_domain(url):
     parse_result = urlparse(url)
     return parse_result.netloc
 
-res_list = ['https://carey.akhack.com/']
 # res_list = ['https://blog.12ms.xyz/']
 
 i = 0
@@ -143,26 +142,30 @@ def fetch_xml(res_list):
             pass
     f.flush()
 
-f = open('out.log','a+') 
-while True:
-    # res_list += map(lambda x: dict({'url':x, 'status':False}) ,search_for_cross(res_list[i]))
-    res_list += list(map(lambda x: 'http://'+get_domain(x), search_for_cross(res_list[i])))
-    # res_list += list(search_for_cross(res_list[i]))
-    orgList = res_list
-    res_list = list(set(res_list))
-    res_list.sort(key=orgList.index)
-    print(res_list, len(res_list))
-    i = i + 1
-    print(i)
-    if i % 10 == 0:
-        fetch_xml(res_list)
-        # 释放内存防止oom
-        res_list = res_list[10:] 
-        i = 0
-    if i >= len(res_list):
-        break
-    # if len(res_list)>10:
-    #     break
-print(res_list, len(res_list))
 
-# print(list(map(lambda x: x+try_feed_link(x), res_list)))
+if __name__ == "__main__":
+    res_list = ['https://carey.akhack.com/']
+
+    f = open('out_'+time.strftime("%Y%m%d%H%M", time.localtime())+'.log','a+')
+    while True:
+        # res_list += map(lambda x: dict({'url':x, 'status':False}) ,search_for_cross(res_list[i]))
+        res_list += list(map(lambda x: 'http://'+get_domain(x), search_for_cross(res_list[i])))
+        # res_list += list(search_for_cross(res_list[i]))
+        orgList = res_list
+        res_list = list(set(res_list))
+        res_list.sort(key=orgList.index)
+        print(res_list, len(res_list))
+        i = i + 1
+        print(i)
+        if i % 10 == 0:
+            fetch_xml(res_list)
+            # 释放内存防止oom
+            res_list = res_list[10:] 
+            i = 0
+        if i >= len(res_list):
+            break
+        # if len(res_list)>10:
+        #     break
+    print(res_list, len(res_list))
+
+    # print(list(map(lambda x: x+try_feed_link(x), res_list)))
