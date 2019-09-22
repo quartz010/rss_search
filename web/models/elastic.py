@@ -21,13 +21,20 @@ def es_index(_bodys, _index='test'):
         rst = es.index(index=_index, body=body, id=None)
         print(rst['result'])
 
+def gen_es_id(org_str):
+    import hashlib
+    hash_str = hashlib.md5(org_str.encode("utf-8")).hexdigest()
+    return hash_str
+
 def es_bulk_index(_bodys, _index='test'):
 
     bodys = list(filter(lambda x: not _es_chk_exist(_index, x['title']), _bodys))
     print('add:' +str(len(bodys)))
     start_time = time.time()
+    # 给每一项补充时间戳
     bodys = list(map(lambda x: dict(x ,**{"timestamp": datetime.datetime.utcnow()}), bodys))
-    actions = list(map(lambda x: {"timestamp": datetime.datetime.utcnow(), "_index": _index,"_source": x}, bodys))
+    # 使用自定义的MD5ID
+    actions = list(map(lambda x: {"_index": _index,"_id": gen_es_id(x['title']) ,"_source": x}, bodys))
     res = helpers.bulk(es, actions)
     end_time = time.time()
     print("{} {}s".format(res, end_time - start_time))
