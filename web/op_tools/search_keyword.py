@@ -1,10 +1,9 @@
 # -*- coding: UTF-8
 import sys
 sys.path.append("..")
-from mods import rss
-from mods import elastic
+from ..models import elastic
+from ..models import rss
 import json
-import sys
 
 if __name__ == "__main__":
     # 用来解决编码问题
