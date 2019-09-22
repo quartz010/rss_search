@@ -21,8 +21,9 @@ def es_index(_bodys, _index='test'):
         rst = es.index(index=_index, body=body, id=None)
         print(rst['result'])
 
-def es_bulk_index(bodys, _index='test'):
-    bodys = list(filter(lambda x: not  _es_chk_exist(_index, ['title']), bodys))
+def es_bulk_index(_bodys, _index='test'):
+
+    bodys = list(filter(lambda x: not _es_chk_exist(_index, x['title']), _bodys))
     print('add:' +str(len(bodys)))
     start_time = time.time()
     bodys = list(map(lambda x: dict(x ,**{"timestamp": datetime.datetime.utcnow()}), bodys))
@@ -94,3 +95,16 @@ def es_get_all_feed_src():
     res = es.search(index='test', body=body)
     print("Got %d Hits:" % res['hits']['total']['value'])
     print(res['es_get_all_feed_src']['rsss']['buckets'])
+
+
+
+
+{"query" : {"constant_score" : {"filter" : {"terms" : {"title" : [20, 30]}}}}}
+
+
+bodys = list(filter(lambda x: not  _es_chk_exist(_index, x['title']), _bodys))
+
+
+
+
+curl -H 'Content-Type:application/json' -XPOST "http://127.0.0.1:9200/test/_search" -d '{"terms" : {"title" : [20, 30]}}'
