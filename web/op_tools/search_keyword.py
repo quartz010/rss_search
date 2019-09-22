@@ -1,8 +1,8 @@
 # -*- coding: UTF-8
 import sys
 sys.path.append("..")
-from ..models import elastic
-from ..models import rss
+from models import rss
+from models import elastic
 import json
 
 if __name__ == "__main__":
