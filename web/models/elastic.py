@@ -118,7 +118,7 @@ def es_rand():
             res_list.append(dict(hit["_source"], **{"_score" :hit["_score"]}))
         except KeyError as e:
             print(repr(e))
-    print(res_list)
+    # print(res_list)s
     return res_list
 
 def es_get_all_feed_src():
