@@ -49,11 +49,11 @@ def add_rss():
     
     if request.method == 'POST':
         try:
-            import redis  
-            feed_src = request.form['feed_src']
-            r = redis.Redis(host='localhost', port=6379, decode_responses=True, db=1) 
-            r.rpush('feed_list',feed_src)
-
+           # import redis  
+           # feed_src = request.form['feed_src']
+           # r = redis.Redis(host='localhost', port=6379, decode_responses=True, db=1) 
+           # r.rpush('feed_list',feed_src)
+            tasks.add_new_rss.apply_async(args = [request.form['feed_src']])
         except Exception as e:
             current_app.logger.error(repr(e))
             abort(500)
