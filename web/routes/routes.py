@@ -33,17 +33,29 @@ def search_es():
         try:
             res_list = elastic.es_search(request.args.get('q', ''))
         except Exception as e:
-            current_app.logger.info(repr(e))
+            current_app.logger.error(repr(e))
             abort(500)
     return json.dumps(res_list)
 
-@main.route('/rss',  methods=['POST', 'GET'])
+@main.route('/rss',  methods=['POST','GET'])
 def add_rss():
-    
     if request.method == 'GET':
         try:
             res_list = elastic.es_search(request.args.get('q', ''))
         except Exception as e:
-            current_app.logger.info(repr(e))
+            current_app.logger.error(repr(e))
             abort(500)
-    return json.dumps(res_list)
+        res = json.dumps(res_list)
+    
+    if request.method == 'POST':
+        try:
+            import redis  
+            feed_src = request.form['feed_src']
+            r = redis.Redis(host='localhost', port=6379, decode_responses=True, db=1) 
+            r.rpush('feed_list',feed_src)
+
+        except Exception as e:
+            current_app.logger.error(repr(e))
+            abort(500)
+
+    return res

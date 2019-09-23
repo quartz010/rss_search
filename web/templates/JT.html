@@ -80,9 +80,9 @@
         <p>现在在快速的拓展RSS的索引，如果你有，或者你希望有，欢迎在下方提交</p>
         <form class="form-inline" role="form">
           <div class="form-group">
-            <input type="text" class="form-control" id="rss_submit" placeholder="请输入RSS源">
+            <input type="text" class="form-control" id="rss_txt" placeholder="请输入RSS源">
           </div>
-          <button type="submit" class="btn btn-primary btn-default">提交 >> </button>
+          <button type="button" id="rss_btn" class="btn btn-primary btn-default">提交 >> </button>
         </form>
       </div>
     </div>
@@ -208,6 +208,9 @@
         $('#search_content').html("");
         content_search($('#search_text').val());
       })
+      $("#rss_btn").on("click", function(){
+        rssSubmit($("#rss_txt").val());
+      })
 
     })
 
@@ -234,6 +237,28 @@
           document.getElementById("content").innerHTML + "<br /> "
           + Txt;
       }
+    }
+    function rssSubmit(rss_src) {
+      $.ajax({
+        //url: "/static/res.json", //请求的url地址
+        url: "/rss", //请求的url地址
+        dataType: "json", //返回格式为json
+        async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+        data: { "feed_src": rss_src }, //参数值
+        type: "POST", //请求方式
+        beforeSend: function () {
+          //请求前的处理
+        },
+        success: function (req) {
+          //请求成功时处理
+          console.log(req);
+        },
+        complete: function () {
+
+        },
+        error: function () {
+          //请求出错处理
+        }
     }
     function content_search(search_text) {
       $.ajax({
