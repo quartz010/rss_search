@@ -57,5 +57,5 @@ def add_rss():
         except Exception as e:
             current_app.logger.error(repr(e))
             abort(500)
-
+        res = json.dumps({"ok": True})
     return res
